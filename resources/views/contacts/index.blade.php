@@ -17,30 +17,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>أحمد</td>
-                  <td>محمود</td>
-                  <td>ahmed@example.com</td>
-                  <td><button type="submit" class="btn btn-danger">حذف</button></td>
-                  <td><button type="submit" class="btn btn-primary">تعديل</button></td>
+               @foreach ($contacts as $index => $contact)
+               <tr>
+                  <th scope="row">{{++$index}}</th>
+                  <td>{{$contact->first_name}}</td>
+                  <td>{{$contact->last_name}}</td>
+                  <td>{{$contact->email}}</td>
+                  <td><a href="{{url('destroy/'. $contact->id)}}"  class="btn btn-danger">حذف</a></td>
+                  <td><a href="{{url('edit/'. $contact->id)}}"  class="btn btn-primary">تعديل</a></td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>حسن</td>
-                  <td>حسنين</td>
-                  <td>hassan@example.com</td>
-                  <td><button type="submit" class="btn btn-danger">حذف</button></td>
-                  <td><button type="submit" class="btn btn-primary">تعديل</button></td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>منى</td>
-                  <td>أحمد</td>
-                  <td>mona@example.com</td>
-                  <td><button type="submit" class="btn btn-danger">حذف</button></td>
-                  <td><button type="submit" class="btn btn-primary">تعديل</button></td>
-                </tr>
+               @endforeach
+
               </tbody>
             </table>
         </div>

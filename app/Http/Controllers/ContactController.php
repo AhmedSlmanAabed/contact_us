@@ -12,7 +12,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contacts.index');
+        $contacts = Contact::all();
+
+        return view('contacts.index' , compact('contacts'));
     }
 
     /**
@@ -47,9 +49,12 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Contact $contact)
+    public function edit($id)
     {
-        //
+        //$contact = new Contact();
+        $contact = Contact::find($id);
+        //$contact->all();
+        return view('contacts.create' , compact('contact'));
     }
 
     /**
@@ -63,8 +68,11 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->delete();
+
+        return redirect()->back();
     }
 }
